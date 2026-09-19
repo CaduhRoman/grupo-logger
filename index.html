@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Grupo Logger: soluções para logística, agro e varejo, além de software sob medida para as necessidades e a área de atuação de cada cliente." />
+    <meta name="description" content="Grupo Logger: logística, varejo e Techsolutions. Desenvolvemos software sob medida para as necessidades e a área de atuação de cada cliente." />
     <title>Grupo Logger — Movemos o que importa</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,25 +17,24 @@
       <nav class="desktop-nav" aria-label="Navegação principal">
         <a href="#grupo">O grupo</a>
         <a href="#atuacao">Atuação</a>
-        <a href="#contato">Contato</a>
+        <a class="header-link" href="#contato">Fale conosco <span aria-hidden="true">↗</span></a>
       </nav>
-      <a class="header-link" href="#contato">Fale conosco <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span></button>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-content">
           <p class="eyebrow"><span class="eyebrow-dot"></span> Grupo Logger <span class="eyebrow-line"></span> Tecnologia e operação</p>
           <h1 id="hero-title">Movemos o que<br /><em>importa.</em></h1>
           <p class="hero-description">Um grupo feito de pessoas, operação e tecnologia. Conectamos ideias à realidade para fazer o mundo girar melhor.</p>
           <a class="button button--light" href="#atuacao">Conheça nossas frentes <span>↓</span></a>
         </div>
-        <div class="scroll-cue"><span></span> Role para explorar</div>
+        <img class="hero-mark" src="assets/gglogo-branco-trim.png" alt="" aria-hidden="true" />
       </section>
 
       <section class="intro section" id="grupo">
+        <img class="intro-portrait" src="assets/handshaking-socios.jpg" alt="Sócios do Grupo Logger" loading="lazy" decoding="async" />
         <div class="section-label">O grupo</div>
         <div class="intro-copy">
           <h2>Ideias que nascem<br />para <em>transformar.</em></h2>
@@ -49,11 +49,57 @@
           <div><strong>+</strong><small>software sob medida</small></div>
           <div><strong>1</strong><small>jeito único de fazer</small></div>
         </div>
+        <div class="founders-intro">
+          <span>Quem constrói a Logger</span>
+          <h3>Administração e tecnologia<br />na mesma direção.</h3>
+        </div>
+        <div class="founders" aria-label="Sócios fundadores do Grupo Logger">
+          <article class="founder-card">
+            <span class="founder-area">Tecnologia da Informação</span>
+            <h3>Carlos Romanow</h3>
+            <dl class="founder-details">
+              <div>
+                <dt>Experiência Sólida</dt>
+                <dd>
+                  <span>Setor de Dados</span>
+                  <img class="institution-logo institution-logo--mariga" src="assets/logo-grupo-maringa.png" alt="Grupo Maringá" />
+                </dd>
+              </div>
+              <div>
+                <dt>Formação atual</dt>
+                <dd>
+                  <span>Tecnologia da Informação · UFMS</span>
+                  <img class="institution-logo institution-logo--ufms" src="assets/logo-ufms.png" alt="Universidade Federal de Mato Grosso do Sul" />
+                </dd>
+              </div>
+            </dl>
+          </article>
+          <article class="founder-card">
+            <span class="founder-area">Administração</span>
+            <h3>Bruno Camargo</h3>
+            <dl class="founder-details">
+              <div>
+                <dt>Formação técnica</dt>
+                <dd>
+                  <span>Administração · ETEC</span>
+                  <img class="institution-logo institution-logo--cps" src="assets/logo-centro-paula-souza.svg" alt="Centro Paula Souza" />
+                </dd>
+              </div>
+              <div>
+                <dt>Formação atual</dt>
+                <dd>
+                  <span>Graduação em andamento · Faculdade Hub</span>
+                  <img class="institution-logo institution-logo--hub" src="assets/logo-faculdade-hub.svg" alt="Faculdade Hub" />
+                </dd>
+              </div>
+            </dl>
+          </article>
+        </div>
       </section>
 
       <section class="areas section" id="atuacao">
         <div class="section-label">Onde atuamos</div>
-        <div class="areas-heading"><h2>Diferentes caminhos.<br /><em>Um só grupo.</em></h2><p>Atuamos em logística, agro e varejo. E vamos além: desenvolvemos software sob medida para cada cliente, conforme suas necessidades e sua área de atuação.</p></div>
+        <div class="areas-heading"><h2>Diferentes caminhos.<br /><em>Um só grupo.</em></h2><p>Unimos logística, varejo e tecnologia. Com a Techsolutions, desenvolvemos software sob medida para clientes de diferentes áreas, a partir das necessidades de cada negócio.</p></div>
         <div class="cards">
           <article class="area-card">
             <div class="card-top"><span>01</span><span class="card-arrow">↗</span></div>
@@ -62,13 +108,13 @@
           </article>
           <article class="area-card">
             <div class="card-top"><span>02</span><span class="card-arrow">↗</span></div>
-            <div class="card-logo"><img src="assets/ggagro.png" alt="GG Agro" /></div>
-            <h3>Agro</h3><p>Tecnologia e operação para gerar valor do campo à cadeia inteira.</p><a href="#contato">Explorar frente <span>↗</span></a>
+            <div class="card-logo"><img class="card-logo-contain" src="assets/ggvarejo-trim.png" alt="GG Varejo" /></div>
+            <h3>Varejo</h3><p>Tecnologia para conectar vendas, gestão e atendimento à rotina do seu negócio.</p><a href="#contato">Explorar frente <span>↗</span></a>
           </article>
           <article class="area-card">
             <div class="card-top"><span>03</span><span class="card-arrow">↗</span></div>
-            <div class="card-logo"><img src="assets/ggtech.png" alt="GG Tech" /></div>
-            <h3>Varejo</h3><p>Tecnologia para conectar vendas, gestão e a rotina do seu negócio.</p><a href="#contato">Explorar frente <span>↗</span></a>
+            <div class="card-logo"><img class="card-logo-contain" src="assets/ggpeopleagrotech-trim.png" alt="GG People, GG Agro e GG Tech" /></div>
+            <h3>Techsolutions</h3><p>Desenvolvimento de software sob medida para sua empresa, conforme suas necessidades e área de atuação.</p><a href="#contato">Explorar frente <span>↗</span></a>
           </article>
         </div>
       </section>
