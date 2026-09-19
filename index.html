@@ -108,7 +108,7 @@
           </article>
           <article class="area-card">
             <div class="card-top"><span>02</span><span class="card-arrow">↗</span></div>
-            <div class="card-logo"><img class="card-logo-contain" src="assets/ggvarejo-trim.png" alt="GG Varejo" /></div>
+            <div class="card-logo"><img class="card-logo-contain card-logo-retail" src="assets/ggvarejo-trim.png" alt="GG Varejo" /></div>
             <h3>Varejo</h3><p>Tecnologia para conectar vendas, gestão e atendimento à rotina do seu negócio.</p><a href="#contato">Explorar frente <span>↗</span></a>
           </article>
           <article class="area-card">
@@ -129,10 +129,12 @@
         <div class="section-label">Vamos conversar</div>
         <div class="contact-layout">
           <div><h2>Tem um desafio?<br /><em>Vamos mover.</em></h2><p>Conte o que você está construindo. A gente encontra o melhor caminho juntos.</p><a class="contact-email" href="mailto:oi@grupologger.com.br">oi@grupologger.com.br <span>↗</span></a></div>
-          <form class="contact-form" id="contact-form">
-            <label>Seu nome<input type="text" name="nome" placeholder="Como podemos te chamar?" required /></label>
-            <label>Seu e-mail<input type="email" name="email" placeholder="voce@empresa.com" required /></label>
-            <label>Como podemos ajudar?<textarea name="mensagem" rows="3" placeholder="Fale um pouco sobre seu projeto"></textarea></label>
+          <form class="contact-form" id="contact-form" name="contato" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contato" />
+            <p class="form-honeypot" aria-hidden="true"><label>Não preencha este campo<input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+            <label>Seu nome<input type="text" name="nome" autocomplete="name" placeholder="Como podemos te chamar?" required /></label>
+            <label>Seu e-mail<input type="email" name="email" autocomplete="email" placeholder="voce@empresa.com" required /></label>
+            <label>Como podemos ajudar?<textarea name="mensagem" rows="3" placeholder="Fale um pouco sobre seu projeto" required></textarea></label>
             <button class="button button--dark" type="submit">Enviar mensagem <span>↗</span></button>
             <p class="form-status" role="status"></p>
           </form>
