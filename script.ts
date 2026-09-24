@@ -1,3 +1,7 @@
+import { mountHeroShowcase } from './hero-showcase';
+
+mountHeroShowcase('#hero-showcase-root');
+
 const menuToggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
 const nav = document.querySelector<HTMLElement>('.desktop-nav');
 
@@ -11,6 +15,15 @@ document.querySelectorAll<HTMLAnchorElement>('.desktop-nav a').forEach((link) =>
   link.addEventListener('click', () => {
     menuToggle?.setAttribute('aria-expanded', 'false');
     nav?.classList.remove('is-open');
+  });
+});
+
+const solutionSelect = document.querySelector<HTMLSelectElement>('#contact-solution');
+
+document.querySelectorAll<HTMLAnchorElement>('[data-solution]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const solution = link.dataset.solution;
+    if (solution && solutionSelect) solutionSelect.value = solution;
   });
 });
 

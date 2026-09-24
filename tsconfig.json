@@ -3,11 +3,12 @@
     "target": "ES2020",
     "module": "ES2020",
     "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
     "strict": true,
     "noEmitOnError": true,
     "outDir": ".build",
     "rootDir": ".",
     "skipLibCheck": true
   },
-  "include": ["script.ts"]
+  "include": ["script.ts", "hero-showcase.tsx"]
 }
