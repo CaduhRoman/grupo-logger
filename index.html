@@ -3,152 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sites profissionais, sistemas personalizados e aplicativos. O Grupo Logger desenvolve soluções digitais para sua empresa crescer, automatizar processos e operar melhor." />
-  <title>Grupo Logger — Soluções digitais para mover seu negócio</title>
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Sites, sistemas e aplicativos que trazem cliente para a sua empresa. Fale com o Grupo Logger." />
+  <title>Grupo Logger</title>
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Inter:opsz,wght@14..32,400..700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <a class="skip-link" href="#principal">Pular para o conteúdo</a>
-  <header class="site-header" id="top">
-    <a class="brand" href="#top" aria-label="Grupo Logger, início"><img class="logo logo--group" src="assets/grupo-logger.png" alt="Grupo Logger" /></a>
-    <nav class="desktop-nav" id="navigation" aria-label="Navegação principal">
-      <a href="#solucoes">Soluções</a><a href="#como-funciona">Como trabalhamos</a><a href="#grupo">O grupo</a>
-      <a class="header-link" href="#contato">Fale conosco <span aria-hidden="true">↗</span></a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Grupo Logger, início">
+      <img src="assets/gglogo-branco-trim.png" alt="" width="722" height="493" />
+    </a>
+    <nav class="site-nav" aria-label="Principal">
+      <a class="site-nav__link" href="#servicos">Servicos</a>
+      <a class="site-nav__link" href="#sobre">Sobre</a>
+      <a class="button button--outline" data-whatsapp href="#">Falar com vendas</a>
     </nav>
-    <button class="menu-toggle" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false"><span></span><span></span></button>
   </header>
+
   <main id="principal">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-layout wrap">
-        <div class="hero-content">
-          <h1 id="hero-title">Seu negócio.<br />Mais forte.<br /><em>Mais digital.</em></h1>
-          <p class="hero-description">Sites, sistemas e aplicativos sob medida para conquistar clientes, automatizar processos e fazer sua empresa operar melhor.</p>
-          <div class="hero-actions"><a class="button button--light" href="#solucoes">IMPULSIONE SEU NEGÓCIO <span aria-hidden="true">↓</span></a></div>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 class="headline" id="hero-title">
+          <span class="sr-only">Bora vender mais?</span>
+          <span class="headline__lead" aria-hidden="true">Bora</span>
+          <span class="headline__line" aria-hidden="true"><span class="headline__typed" data-typed>vender mais</span><span class="caret" data-caret></span>?</span>
+        </h1>
+        <p class="hero-lede">A gente cria o site que faz o cliente chegar até você. O resultado você confere no seu próprio celular.</p>      </div>
 
-        </div>
-        <div class="hero-showcase" aria-label="Uma interface se transforma entre aplicativo, sistema e site">
-          <div id="hero-showcase-root" aria-hidden="true"></div>
-          <noscript><p class="showcase-fallback">Aplicativos · Sistemas · Sites</p></noscript>
-        </div>
-      </div>
-    </section>
+      <figure class="hero-device" aria-label="Tela de bloqueio de um iPhone recebendo notificações de Pix e de pedidos de orçamento">
+        <div class="iphone">
+          <span class="iphone__btn iphone__btn--action" aria-hidden="true"></span>
+          <span class="iphone__btn iphone__btn--vol-up" aria-hidden="true"></span>
+          <span class="iphone__btn iphone__btn--vol-down" aria-hidden="true"></span>
+          <span class="iphone__btn iphone__btn--power" aria-hidden="true"></span>
+          <span class="iphone__btn iphone__btn--camera" aria-hidden="true"></span>
 
-    <section class="solutions section" id="solucoes" aria-labelledby="solutions-title">
-      <div class="wrap"><div class="section-heading"><div><p class="section-label">Produtos e soluções</p><h2 id="solutions-title">O próximo passo<br />da sua empresa.</h2></div><p>Seja para se apresentar melhor, organizar a rotina ou conectar pessoas: construímos a solução a partir do seu desafio.</p></div>
-      <div class="solution-grid"><article class="solution-card" id="sites" aria-labelledby="sites-title">
-  <!-- Substituir solution-media por imagens ou demonstrações reais quando disponíveis. -->
-  <div class="solution-media" aria-hidden="true"><div class="mini-browser"><div class="window-bar"><i></i><i></i><i></i></div><div class="mini-site"><span>SUA MARCA</span><strong>Uma presença.<br />Novas possibilidades.</strong><b></b><div class="mini-tiles"><i></i><i></i><i></i></div></div></div></div>
-  <div class="solution-content"><p class="solution-category">Sites profissionais</p><h3 id="sites-title">Sua empresa merece ser encontrada.</h3><p>Apresente seu negócio com um site moderno, responsivo e com a sua identidade. Transforme visitas em oportunidades de contato.</p><ul><li>Presença digital com identidade</li><li>Boa experiência no celular</li><li>Caminhos claros até o contato</li></ul></div>
-  <!-- Espaço de extensão: detalhes, demonstrações e condições comerciais reais. -->
-  <div class="solution-action"><a href="#contato" data-solution="site">QUERO UM SITE PROFISSIONAL<span aria-hidden="true">↗</span></a></div>
-</article>
-<article class="solution-card" id="sistemas" aria-labelledby="sistemas-title">
-  <!-- Substituir solution-media por imagens ou demonstrações reais quando disponíveis. -->
-  <div class="solution-media" aria-hidden="true"><div class="flow-art"><span>Informações</span><i>↓</i><div><span>Processos</span><b>↗</b><span>Equipe</span></div><i>↓</i><strong>Operação conectada <b>✓</b></strong></div></div>
-  <div class="solution-content"><p class="solution-category">Sistemas personalizados</p><h3 id="sistemas-title">Menos tarefas repetidas. Mais controle.</h3><p>Desenvolva um sistema em torno da sua operação. Organize informações, conecte processos e reduza o trabalho manual do dia a dia.</p><ul><li>Processos desenhados para você</li><li>Informações em um só lugar</li><li>Automação de tarefas da rotina</li></ul></div>
-  <!-- Espaço de extensão: detalhes, demonstrações e condições comerciais reais. -->
-  <div class="solution-action"><a href="#contato" data-solution="sistema">QUERO UM SISTEMA PARA MINHA EMPRESA<span aria-hidden="true">↗</span></a></div>
-</article>
-<article class="solution-card" id="apps" aria-labelledby="apps-title">
-  <!-- Substituir solution-media por imagens ou demonstrações reais quando disponíveis. -->
-  <div class="solution-media" aria-hidden="true"><div class="phone-art"><div class="phone-speaker"></div><span>SUA EMPRESA</span><strong>Tudo mais<br />perto.</strong><div class="phone-tiles"><i>↗</i><i>≡</i><i>◎</i><i>✓</i></div><b class="phone-line"></b></div></div>
-  <div class="solution-content"><p class="solution-category">Aplicativos</p><h3 id="apps-title">Seu negócio mais perto de quem precisa.</h3><p>Conecte sua empresa, seus clientes e sua equipe com uma experiência digital pensada para a forma como eles trabalham e se relacionam.</p><ul><li>Experiência pensada para o usuário</li><li>Conexão entre clientes e operação</li><li>Funcionalidades sob medida</li></ul></div>
-  <!-- Espaço de extensão: detalhes, demonstrações e condições comerciais reais. -->
-  <div class="solution-action"><a href="#contato" data-solution="aplicativo">QUERO DESENVOLVER UM APLICATIVO<span aria-hidden="true">↗</span></a></div>
-</article></div>
-      <div class="solutions-bottom"><span>Não sabe qual solução faz sentido para você?</span><a class="text-link" href="#contato">Conte o que precisa melhorar <span aria-hidden="true">↗</span></a></div></div>
-    </section>
+          <div class="iphone__bezel">
+            <div class="screen">
+              <svg class="wallpaper" viewBox="0 0 402 874" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <defs>
+                  <linearGradient id="wp-base" x1="0" y1="0" x2=".4" y2="1">
+                    <stop offset="0" stop-color="#2a2a2d" />
+                    <stop offset=".55" stop-color="#0b0b0c" />
+                    <stop offset="1" stop-color="#1a1a1c" />
+                  </linearGradient>
+                  <filter id="wp-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="34" /></filter>
+                  <filter id="wp-fold" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14" /></filter>
+                  <filter id="wp-grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch" /><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0" /></filter>
+                </defs>
+                <rect width="402" height="874" fill="url(#wp-base)" />
+                <g filter="url(#wp-soft)">
+                  <ellipse cx="330" cy="190" rx="150" ry="110" fill="#c7c7cc" opacity=".42" />
+                  <ellipse cx="40" cy="430" rx="130" ry="210" fill="#8e8e93" opacity=".5" />
+                  <ellipse cx="290" cy="660" rx="190" ry="120" fill="#e5e5ea" opacity=".3" />
+                </g>
+                <g filter="url(#wp-fold)" fill="none" stroke-linecap="round">
+                  <path d="M-60 360C70 250 190 330 290 250S420 120 470 90" stroke="#f2f2f7" stroke-width="26" opacity=".38" />
+                  <path d="M-40 520C90 440 200 520 320 430S440 330 480 300" stroke="#d1d1d6" stroke-width="18" opacity=".26" />
+                  <path d="M-30 300C60 230 150 280 240 200" stroke="#000" stroke-width="40" opacity=".5" />
+                </g>
+                <rect width="402" height="874" filter="url(#wp-grain)" opacity=".06" />
+              </svg>
 
-    <section class="benefits section" aria-labelledby="benefits-title"><div class="wrap benefits-layout">
-      <div><p class="section-label">Tecnologia com propósito</p><h2 id="benefits-title">O resultado começa<br />no problema certo.</h2><p class="section-copy">Um bom projeto digital precisa fazer sentido na rotina de quem usa. É por isso que começamos pelo seu negócio.</p><a class="text-link" href="#contato">Vamos entender seu desafio <span aria-hidden="true">↗</span></a></div>
-      <div class="benefit-list"><article><span aria-hidden="true">↗</span><div><h3>Sua empresa bem apresentada</h3><p>Mostre o que você oferece e facilite o caminho para o cliente encontrar e contatar sua empresa.</p></div></article><article><span class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5v5l3.5 2"></path></svg></span><div><h3>Mais tempo para o que importa</h3><p>Transforme tarefas repetitivas em processos digitais e diminua a dependência de controles manuais.</p></div></article><article><span aria-hidden="true">◎</span><div><h3>Informação para agir melhor</h3><p>Organize dados e conecte etapas da operação para acompanhar o negócio com mais clareza.</p></div></article></div>
-    </div></section>
-
-    <section class="process section" id="como-funciona" aria-labelledby="process-title"><div class="wrap"><div class="section-heading"><div><p class="section-label">Como começar</p><h2 id="process-title">Uma conversa.<br />Um próximo passo claro.</h2></div><p>Não precisa chegar com uma especificação pronta. Comece contando o que sua empresa precisa fazer melhor.</p></div>
-    <ol class="process-steps"><li><span class="step-symbol" aria-hidden="true">↗</span><h3>Conte seu desafio</h3><p>Fale sobre sua empresa, o que precisa melhorar e a ideia que gostaria de tirar do papel.</p></li><li><span class="step-symbol" aria-hidden="true">↗</span><h3>Conheça a proposta</h3><p>Alinhamos objetivos, escopo, prazos e investimento para você avaliar o caminho sugerido.</p></li><li><span class="step-symbol" aria-hidden="true">↗</span><h3>Dê o primeiro passo</h3><p>Com a proposta aprovada, organizamos o início do projeto e os pontos de acompanhamento com você.</p></li></ol>
-    <a class="button button--dark" href="#contato">Começar uma conversa <span aria-hidden="true">↗</span></a></div></section>
-
-    <section class="intro section" id="grupo" aria-labelledby="group-title"><div class="wrap">
-      <div class="group-overview"><p class="group-photo-credit"><span>Sócios fundadores</span><strong>Carlos Romanow + Bruno Camargo</strong></p><div><p class="section-label">O grupo</p><h2 id="group-title">Entender de negócio.<br />Saber construir.</h2><p class="section-copy">A Logger une Administração e Tecnologia da Informação para aproximar a necessidade da empresa da solução que será desenvolvida.</p><p class="section-copy">Combinamos visão de gestão, dados e desenvolvimento para criar projetos que façam sentido no planejamento e no dia a dia.</p></div></div>
-      <div class="founders-intro"><h3>Quem constrói a Logger</h3></div>
-              <div class="founders" aria-label="Sócios fundadores do Grupo Logger">
-          <article class="founder-card">
-            <div class="founder-card-top">
-              <span class="founder-area">Desenvolvimento</span>
-              <div class="institution-marks" aria-label="Experiência no Grupo Maringá e formação na UFMS">
-                <img class="institution-logo institution-logo--mariga" src="assets/logo-grupo-maringa.png" alt="Grupo Maringá" />
-                <img class="institution-logo institution-logo--ufms" src="assets/logo-ufms.png" alt="Universidade Federal de Mato Grosso do Sul" />
+              <div class="status-bar" aria-hidden="true">
+                <svg viewBox="0 0 18 12"><rect x="0" y="7.5" width="3" height="4.5" rx=".9" /><rect x="5" y="5" width="3" height="7" rx=".9" /><rect x="10" y="2.5" width="3" height="9.5" rx=".9" /><rect x="15" y="0" width="3" height="12" rx=".9" /></svg>
+                <svg viewBox="0 0 16 12"><path d="M8 2.3c2.3 0 4.5.9 6.1 2.4.1.1.3.1.4 0l1-1c.1-.1.1-.3 0-.4A10.6 10.6 0 0 0 8 .3C5.1.3 2.4 1.4.5 3.3c-.1.1-.1.3 0 .4l1 1c.1.1.3.1.4 0A8.8 8.8 0 0 1 8 2.3Zm0 3.3c1.4 0 2.6.5 3.6 1.3.1.1.3.1.4 0l1-1c.1-.1.1-.3 0-.4A7.2 7.2 0 0 0 8 3.6c-1.9 0-3.7.7-5 1.9-.1.1-.1.3 0 .4l1 1c.1.1.3.1.4 0 1-.8 2.2-1.3 3.6-1.3Zm2 2.4c.1-.1.1-.3 0-.4A3 3 0 0 0 8 6.9a3 3 0 0 0-2 .7c-.1.1-.1.3 0 .4l1.8 1.8c.1.1.3.1.4 0L10 8Z" /></svg>
+                <svg viewBox="0 0 28 13" class="status-bar__battery"><rect x=".5" y=".5" width="24" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".38" /><rect x="2" y="2" width="18.5" height="9" rx="2.4" /><path d="M26 4.4v4.2c.8-.3 1.4-1.2 1.4-2.1s-.6-1.8-1.4-2.1Z" opacity=".4" /></svg>
               </div>
-            </div>
-            <h3>Carlos Romanow</h3>
-            <p class="founder-role">Arquitetura de software e desenvolvimento</p>
-          </article>
-          <article class="founder-card">
-            <div class="founder-card-top">
-              <span class="founder-area">Administração</span>
-              <div class="institution-marks" aria-label="Formação pela ETEC e Faculdade Hub">
-                <img class="institution-logo institution-logo--cps" src="assets/logo-centro-paula-souza.svg" alt="Centro Paula Souza" />
-                <img class="institution-logo institution-logo--hub" src="assets/logo-faculdade-hub.svg" alt="Faculdade Hub" />
+
+              <div class="island" aria-hidden="true"><span class="island__lens"></span></div>
+
+              <div class="lock" aria-hidden="true">
+                <svg class="lock__padlock" viewBox="0 0 14 18"><path d="M3.2 7.4V5.3a3.8 3.8 0 0 1 7.6 0v2.1" fill="none" stroke="currentColor" stroke-width="1.7" /><rect x=".5" y="7" width="13" height="10.5" rx="2.4" /></svg>
+                <p class="lock__date" data-lock-date>terça-feira, 21 de outubro</p>
+                <p class="lock__time" data-lock-time>9:41</p>
               </div>
+
+              <ol class="notifications" data-notifications></ol>
             </div>
-            <h3>Bruno Camargo</h3>
-            <p class="founder-role">Gestão, organização e estratégia</p>
-          </article>
+            <span class="glass" aria-hidden="true"></span>
+          </div>
         </div>
-    </div></section>
-
-    <section class="delivery section" id="atuacao" aria-labelledby="delivery-title">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><p class="section-label">Como uma solução ganha forma</p><h2 id="delivery-title">Da oportunidade real<br />à primeira entrega.</h2></div>
-          <p>Começar pelo essencial permite testar as decisões antes de ampliar o projeto. Cada etapa ajuda a definir melhor a próxima.</p>
-        </div>
-        <ol class="delivery-flow">
-          <li>
-            <div class="flow-stage"><span>Investigar</span><span aria-hidden="true">→</span></div>
-            <h3>Encontrar o problema certo</h3>
-            <p>Entendemos o negócio, o mercado e a rotina de quem vai usar a solução. Avaliamos o que vale resolver primeiro.</p>
-            <p class="flow-output"><span>O que fica definido</span>Problema, público e prioridade.</p>
-          </li>
-          <li>
-            <div class="flow-stage"><span>Validar</span><span aria-hidden="true">→</span></div>
-            <h3>Testar antes de ampliar</h3>
-            <p>Desenhamos os principais caminhos e testamos um protótipo com usuários reais. O retorno orienta os ajustes antes do desenvolvimento.</p>
-            <p class="flow-output"><span>O que fica definido</span>Experiência e escopo inicial.</p>
-          </li>
-          <li>
-            <div class="flow-stage"><span>Construir</span><span aria-hidden="true">→</span></div>
-            <h3>Entregar o essencial bem feito</h3>
-            <p>Desenvolvemos e testamos a primeira versão funcional: o MVP. Ela reúne o necessário para resolver o problema prioritário e começar a ser usada.</p>
-            <p class="flow-output"><span>O que vai para uso</span>Uma solução funcional e focada.</p>
-          </li>
-          <li>
-            <div class="flow-stage"><span>Evoluir</span><span aria-hidden="true">↗</span></div>
-            <h3>Aprender com a prática</h3>
-            <p>Avaliamos o uso e o retorno das pessoas para identificar melhorias. As próximas entregas são priorizadas junto com você.</p>
-            <p class="flow-output"><span>O que orienta o próximo passo</span>Necessidades observadas no uso.</p>
-          </li>
-        </ol>
-        <div class="delivery-bottom"><p><span aria-hidden="true">↶</span> O aprendizado volta para o projeto. Testar, ajustar e evoluir fazem parte do caminho.</p><small>A profundidade das etapas e o acompanhamento após a entrega são definidos conforme o escopo de cada projeto.</small></div>
-      </div>
+      </figure>
     </section>
-
-    <section class="contact section" id="contato" aria-labelledby="contact-title"><div class="wrap contact-layout"><div><p class="section-label">Vamos conversar</p><h2 id="contact-title">Seu próximo<br />passo começa<br /><em>aqui.</em></h2><p>Quer um site, um sistema ou um aplicativo? Conte o que você precisa. Vamos entender o cenário e conversar sobre uma solução para sua empresa.</p><a class="contact-email" href="mailto:contato@grupologger.com.br">contato@grupologger.com.br <span aria-hidden="true">↗</span></a><p class="contact-signature">Movemos o que importa.</p></div><div class="contact-panel"><h3>Fale sobre seu projeto</h3><p>O que você gostaria de criar ou melhorar?</p>          <form class="contact-form" id="contact-form" name="contato" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contato" />
-            <p class="form-honeypot" aria-hidden="true"><label>Não preencha este campo<input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
-            <label> Seu nome/Empresa<input type="text" name="nome" autocomplete="name" placeholder="Como podemos te chamar?" required /></label>
-            <label>Seu e-mail<input type="email" name="email" autocomplete="email" placeholder="voce@empresa.com" required /></label>
-            <label>Qual solução você procura?<select id="contact-solution" name="solucao" required><option value="" selected disabled>Selecione uma opção</option><option value="site">Site / Landing Page</option><option value="sistema">Sistema ERP / Gestão de negócio</option><option value="aplicativo">Aplicativo Web / Nativo</option><option value="conversa">Ainda não sei / Quero conversar sobre minha ideia</option></select></label>
-            <label>Como podemos ajudar?<textarea name="mensagem" rows="3" placeholder="Fale um pouco sobre seu projeto" required></textarea></label>
-            <button class="button button--dark" type="submit">Enviar mensagem <span>↗</span></button>
-            <p class="form-status" role="status"></p>
-          </form></div></div></section>
   </main>
-  <footer class="site-footer wrap"><a class="brand" href="#top"><img class="logo logo--group" src="assets/grupo-logger.png" alt="Grupo Logger" /></a><p>© 2026 Grupo Logger</p></footer>
+
   <script type="module" src="script.ts"></script>
 </body>
 </html>
