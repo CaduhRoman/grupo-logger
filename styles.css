@@ -112,7 +112,16 @@ a { color: inherit; text-decoration: none; }
   padding: 0 1rem;
   border: 1px solid var(--line);
 }
-.button--outline:hover { border-color: var(--white); }
+.button--outline:hover,
+.button--outline[aria-current="true"] { border-color: var(--white); }
+.button--solid {
+  align-items: center;
+  height: 48px;
+  padding: 0 1.25rem;
+  background: var(--white);
+  color: var(--black);
+}
+.button--solid:hover { background: rgba(255, 255, 255, .84); }
 
 /* Hero */
 
@@ -128,11 +137,14 @@ a { color: inherit; text-decoration: none; }
   padding: 0 var(--gutter);
 }
 
-.hero-copy {
+/* Os dois textos dividem a mesma célula: trocar de um para o outro não mexe no celular. */
+.hero-copy,
+.hero-sales {
+  grid-area: 1 / 1;
   align-self: center;
-  container-type: inline-size;
   padding-bottom: 4vh;
 }
+.hero-copy { container-type: inline-size; }
 
 .headline {
   margin: 0;
@@ -167,9 +179,105 @@ a { color: inherit; text-decoration: none; }
   text-wrap: pretty;
 }
 
+/* Falar com vendas */
+
+.hero-sales { max-width: 36rem; }
+
+.sales-eyebrow {
+  margin: 0 0 1.1rem;
+  color: var(--text-soft);
+  font-size: .8125rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.sales-title {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: .96;
+  letter-spacing: -.055em;
+}
+
+.needs {
+  display: grid;
+  gap: .625rem;
+  margin-top: clamp(1.75rem, 4.5vh, 2.75rem);
+}
+
+.need {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  width: 100%;
+  min-height: 4rem;
+  padding: .9rem 1.25rem .9rem 1.375rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--white);
+  font: inherit;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+.need:hover { border-color: rgba(255, 255, 255, .6); }
+.need[aria-pressed="true"] {
+  border-color: var(--white);
+  background: var(--white);
+  color: var(--black);
+}
+
+.need__mark {
+  position: relative;
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  opacity: .4;
+  transition: opacity .25s ease;
+}
+.need__mark::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform .45s var(--spring);
+}
+.need[aria-pressed="true"] .need__mark { opacity: 1; }
+.need[aria-pressed="true"] .need__mark::after { transform: scale(1); }
+
+.sales-cta { margin-top: 1.5rem; }
+
+/* Entrada dos textos depois que a pessoa troca de modo (no carregamento nada se mexe). */
+.hero.has-switched [data-panel] > *,
+.hero.has-switched .needs > * {
+  animation: panel-in .7s cubic-bezier(.2, .8, .2, 1) backwards;
+}
+.hero.has-switched [data-panel] > :nth-child(2) { animation-delay: .06s; }
+.hero.has-switched [data-panel] > :nth-child(3) { animation-name: none; }
+.hero.has-switched .needs > :nth-child(1) { animation-delay: .12s; }
+.hero.has-switched .needs > :nth-child(2) { animation-delay: .17s; }
+.hero.has-switched .needs > :nth-child(3) { animation-delay: .22s; }
+.hero.has-switched [data-panel] > :nth-child(4) { animation-delay: .28s; }
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(.875rem); }
+}
+
 /* Device: o iPhone nasce na borda inferior da dobra e aparece pela metade. */
 
 .hero-device {
+  grid-area: 1 / 2;
   position: relative;
   margin: 0;
   padding: clamp(28px, 7vh, 80px) 6em 0;
@@ -244,6 +352,87 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
 }
 
+/* Tela de bloqueio por cima dos apps. data-lock: (ausente) bloqueado · opening · open · closing */
+.lockscreen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  isolation: isolate;
+}
+.screen[data-lock="open"] .lockscreen { visibility: hidden; transform: translateY(-100%); }
+
+.apps {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  visibility: hidden;
+  /* Fundo do seletor de apps: o papel de parede desfocado. */
+  background:
+    radial-gradient(60% 40% at 85% 20%, rgba(199, 199, 204, .32), transparent),
+    radial-gradient(50% 45% at 10% 55%, rgba(142, 142, 147, .3), transparent),
+    linear-gradient(170deg, #2a2a2d, #0b0b0c 60%, #1a1a1c);
+}
+.screen[data-lock] .apps { visibility: visible; }
+
+.app {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+.app.is-current,
+.apps.is-switching .app { visibility: visible; }
+
+.app__view {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 6.2em;
+  transition: box-shadow .3s ease;
+}
+.apps.is-switching .app__view { box-shadow: 0 3em 6em rgba(0, 0, 0, .55); }
+
+/* Ícone e nome do app acima do card, como no seletor do iOS. Fica em escala de app: o card encolhe junto. */
+.app__label {
+  position: absolute;
+  top: -3.3em;
+  left: .4em;
+  display: flex;
+  align-items: center;
+  gap: .55em;
+  margin: 0;
+  font-size: 2.3em;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  opacity: 0;
+}
+.app__icon {
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: .42em;
+}
+.app--site .app__icon { background: linear-gradient(145deg, #ffe45c, #ffc300); box-shadow: inset 0 0 0 .3em #ffd60a, inset 0 0 0 .55em #111; }
+.app--auto .app__icon { background: linear-gradient(145deg, #5a49d6, #221a6b); }
+.app--gestao .app__icon { background: linear-gradient(145deg, #4d6bff, #1835e6); }
+
+.status-time {
+  position: absolute;
+  top: 1.15em;
+  left: 1.9em;
+  z-index: 2;
+  width: 4.4em;
+  font-size: 1.7em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -.01em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity .3s ease, color .35s ease;
+}
+.screen[data-lock="open"] .status-time { opacity: 1; }
+.screen[data-tone="dark"] .status-time,
+.screen[data-tone="dark"] .status-bar { color: #000; }
+
 /* Reflexo do vidro: faixa diagonal muito sutil sobre a tela inteira. */
 .glass {
   position: absolute;
@@ -284,10 +473,12 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   top: 2.15em;
   right: 3.1em;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: .62em;
   height: 1.3em;
+  transition: color .35s ease;
 }
 .status-bar svg { width: auto; height: 1.2em; fill: currentColor; }
 .status-bar .status-bar__battery { height: 1.3em; }
@@ -296,7 +487,9 @@ a { color: inherit; text-decoration: none; }
   padding-top: 5.6em;
   text-align: center;
 }
-.lock__padlock { width: 1.25em; height: auto; margin: 0 auto; fill: currentColor; }
+.lock__padlock { width: 1.25em; height: auto; margin: 0 auto; overflow: visible; fill: currentColor; }
+.lock__shackle { transition: transform .4s var(--spring); }
+.screen[data-lock] .lock__shackle { transform: translateY(-2.8px); }
 .lock__date {
   margin: 1em 0 0;
   font-family: var(--font-ios-display);
@@ -408,6 +601,494 @@ a { color: inherit; text-decoration: none; }
   -webkit-box-orient: vertical;
 }
 
+/* Apps de exemplo. Tudo em em: 1em = 10pt de tela. O desktop mostra só os ~60em de cima, então o conteúdo importante fica no alto. */
+
+.shop,
+.flow,
+.erp {
+  position: absolute;
+  inset: 0;
+  padding: 5.8em 1.8em 0;
+}
+
+/* Seu site: vitrine de loja aberta no Safari */
+
+.shop {
+  --sun: #ffd60a;
+  --pink: #ff3d8b;
+  --cobalt: #2340ff;
+  --mint: #a7f3d0;
+  --ink: #111;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+.shop__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.4em;
+  padding: 0 .4em;
+}
+.shop__logo {
+  display: flex;
+  align-items: center;
+  gap: .4em;
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: -.05em;
+}
+.shop__logo i {
+  width: .82em;
+  height: .82em;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: inset 0 0 0 .14em var(--ink);
+}
+.shop__bag { position: relative; width: 2.6em; height: 2.6em; }
+.shop__bag svg { width: 100%; height: 100%; }
+.shop__bag b {
+  position: absolute;
+  top: -.25em;
+  right: -.45em;
+  display: grid;
+  place-items: center;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  background: var(--pink);
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+.shop__hero {
+  position: relative;
+  min-height: 25em;
+  margin-top: 1em;
+  padding: 2.4em 2.2em;
+  overflow: hidden;
+  border-radius: 2.8em;
+  background: var(--sun);
+}
+.shop__kicker { margin: 0; font-size: 1.3em; font-weight: 600; letter-spacing: -.01em; }
+.shop__headline {
+  max-width: 5.6em;
+  margin: .3em 0 0;
+  font-size: 4.2em;
+  font-weight: 700;
+  line-height: .92;
+  letter-spacing: -.06em;
+}
+.shop__btn {
+  display: inline-flex;
+  align-items: center;
+  height: 2.9em;
+  margin-top: 1.2em;
+  padding: 0 1.3em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 1.45em;
+  font-weight: 600;
+}
+.shop__sticker {
+  position: absolute;
+  right: -.8em;
+  bottom: -1.4em;
+  display: grid;
+  place-items: center;
+  width: 11.5em;
+  height: 11.5em;
+  color: #fff;
+}
+.shop__sticker svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--pink);
+  animation: spin 18s linear infinite;
+}
+.shop__sticker b {
+  position: relative;
+  margin: -1em 0 0 -1em;
+  font-size: 1.75em;
+  line-height: .95;
+  letter-spacing: -.03em;
+  text-align: center;
+  transform: rotate(-12deg);
+}
+
+.shop__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 2.4em .4em 1.2em;
+}
+.shop__head p { margin: 0; font-size: 2em; font-weight: 700; letter-spacing: -.045em; }
+.shop__head span { font-size: 1.3em; font-weight: 500; color: #6b6b6b; }
+
+.shop__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8em 1.2em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.product { position: relative; }
+.product__img {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1.05;
+  overflow: hidden;
+  border-radius: 2.2em;
+  background: var(--bg);
+}
+.product__img::before {
+  content: "";
+  position: absolute;
+  left: 22%;
+  top: 22%;
+  width: 56%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--shape);
+}
+.product--a { --bg: var(--cobalt); --shape: var(--pink); }
+.product--b { --bg: var(--pink); --shape: var(--ink); }
+.product--c { --bg: var(--mint); --shape: var(--cobalt); }
+.product--d { --bg: var(--ink); --shape: var(--sun); }
+/* Arco no lugar do círculo, para os produtos não ficarem iguais. */
+.product--b .product__img::before,
+.product--d .product__img::before {
+  top: auto;
+  bottom: 0;
+  aspect-ratio: .78;
+  border-radius: 999px 999px 0 0;
+}
+.product__name { margin: .6em 0 0 .3em; font-size: 1.45em; font-weight: 600; letter-spacing: -.025em; }
+.product__price { margin: .1em 0 0 .35em; font-size: 1.35em; color: #6b6b6b; }
+.product__add {
+  position: absolute;
+  top: .55em;
+  right: .55em;
+  display: grid;
+  place-items: center;
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 1.9em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.shop__chat {
+  position: absolute;
+  right: 2.2em;
+  bottom: 10.6em;
+  display: grid;
+  place-items: center;
+  width: 5.6em;
+  height: 5.6em;
+  border-radius: 50%;
+  background: #1fb455;
+  box-shadow: 0 1em 2.4em rgba(0, 0, 0, .25);
+}
+.shop__chat svg { width: 58%; height: 58%; }
+.shop__chat::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: .3em solid #1fb455;
+  animation: ping 2.4s cubic-bezier(.2, .8, .2, 1) infinite;
+}
+
+.shop__url {
+  position: absolute;
+  left: 2em;
+  right: 2em;
+  bottom: 3.4em;
+  display: grid;
+  place-items: center;
+  height: 3.2em;
+  border-radius: 999px;
+  background: rgba(245, 245, 245, .82);
+  -webkit-backdrop-filter: blur(1em);
+  backdrop-filter: blur(1em);
+  box-shadow: 0 .4em 2em rgba(0, 0, 0, .14), inset 0 0 0 .05em rgba(0, 0, 0, .06);
+  font-family: var(--font-ios);
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+/* Automações: fluxo que roda sozinho */
+
+.flow {
+  --violet: #b9a8ff;
+  --ok: #5be3a8;
+  padding-inline: 2.2em;
+  background: radial-gradient(90% 45% at 90% 0%, #3d2f9e, transparent 70%), #15123a;
+  color: #fff;
+}
+.flow__app { margin: 0; font-size: 1.4em; font-weight: 600; color: var(--violet); }
+.flow__title {
+  margin: .3em 0 0;
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.flow__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  margin-top: 2.2em;
+}
+.flow__stats p {
+  margin: 0;
+  padding: 1.1em 1.2em;
+  border-radius: 1.6em;
+  background: rgba(255, 255, 255, .07);
+  color: rgba(255, 255, 255, .62);
+  font-size: 1.25em;
+  line-height: 1.25;
+}
+.flow__stats b {
+  display: block;
+  margin-bottom: .2em;
+  color: #fff;
+  font-size: 2em;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.flow__steps {
+  position: relative;
+  display: grid;
+  gap: 1em;
+  margin: 2.2em 0 0;
+  padding: 0;
+  list-style: none;
+}
+.flow__steps::before {
+  content: "";
+  position: absolute;
+  top: 3em;
+  bottom: 3em;
+  left: 3.15em;
+  width: .2em;
+  background: rgba(185, 168, 255, .22);
+}
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.4em 1fr 2.4em;
+  align-items: center;
+  gap: 1.2em;
+  padding: 1em 1.4em 1em 1em;
+  border-radius: 2.2em;
+  background: #1d1a48;
+  transition: background-color .4s ease;
+}
+.step__icon {
+  display: grid;
+  place-items: center;
+  width: 4.4em;
+  height: 4.4em;
+  border-radius: 1.3em;
+  background: #2a2563;
+  color: var(--violet);
+  transition: background-color .4s ease, color .4s ease;
+}
+.step__icon svg {
+  width: 2.2em;
+  height: 2.2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.step__text { color: rgba(255, 255, 255, .5); font-size: 1.2em; line-height: 1.3; }
+.step__text b { display: block; color: #fff; font-size: 1.2em; font-weight: 600; letter-spacing: -.015em; }
+.step__state {
+  position: relative;
+  width: 2.4em;
+  height: 2.4em;
+  border: .2em solid rgba(255, 255, 255, .16);
+  border-radius: 50%;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+.step__state::after {
+  content: "";
+  position: absolute;
+  left: .62em;
+  top: .3em;
+  width: .55em;
+  height: 1.05em;
+  border: solid #15123a;
+  border-width: 0 .24em .24em 0;
+  transform: rotate(45deg) scale(0);
+  transition: transform .4s var(--spring);
+}
+.step.is-running { background: #2c2670; }
+.step.is-running .step__icon { background: var(--violet); color: #15123a; }
+.step.is-running .step__state {
+  border-color: var(--violet);
+  border-right-color: transparent;
+  animation: spin .7s linear infinite;
+}
+.step.is-done .step__icon { color: var(--ok); }
+.step.is-done .step__state { border-color: var(--ok); background: var(--ok); }
+.step.is-done .step__state::after { transform: rotate(45deg) scale(1); }
+
+.flow__done {
+  margin: 1.4em 0 0;
+  color: var(--ok);
+  font-size: 1.3em;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(.6em);
+  transition: opacity .4s ease, transform .5s var(--spring);
+}
+.flow__done.is-shown { opacity: 1; transform: none; }
+
+/* Gestão: o painel da empresa */
+
+.erp {
+  --blue: #2448ff;
+  --muted: #6b7080;
+  background: #f1f2f6;
+  color: #0e1220;
+}
+.erp__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .4em;
+}
+.erp__date { margin: 0; color: var(--muted); font-size: 1.35em; font-weight: 500; }
+.erp__title { margin: 0; font-size: 3.2em; font-weight: 700; line-height: 1.05; letter-spacing: -.045em; }
+.erp__avatar {
+  display: grid;
+  place-items: center;
+  width: 3.1em;
+  height: 3.1em;
+  border-radius: 50%;
+  background: #0e1220;
+  color: #fff;
+  font-size: 1.35em;
+  font-weight: 600;
+}
+
+.erp__hero {
+  margin-top: 1.8em;
+  padding: 2.2em 2.2em 2em;
+  border-radius: 2.6em;
+  background: radial-gradient(80% 70% at 100% 0%, #4f6dff, transparent), var(--blue);
+  color: #fff;
+}
+.erp__caption { margin: 0; font-size: 1.35em; opacity: .8; }
+.erp__value {
+  margin: .05em 0 0;
+  font-size: 4.2em;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums;
+}
+.erp__delta {
+  display: inline-block;
+  margin: .7em 0 0;
+  padding: .3em .7em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .18);
+  font-size: 1.25em;
+  font-weight: 600;
+}
+.erp__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: .7em;
+  height: 7.5em;
+  margin-top: 2em;
+}
+.erp__bars i {
+  flex: 1;
+  height: calc(var(--h) * 100%);
+  border-radius: .5em .5em .2em .2em;
+  background: rgba(255, 255, 255, .32);
+  transform-origin: bottom;
+}
+.erp__bars i:last-child { background: #fff; }
+
+.erp__tiles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2em;
+  margin-top: 1.2em;
+}
+.tile { margin: 0; padding: 1.5em 1.6em; border-radius: 2.2em; background: #fff; }
+.tile span { display: block; color: var(--muted); font-size: 1.3em; }
+.tile b { display: block; margin-top: .15em; font-size: 2.6em; letter-spacing: -.045em; }
+.tile--warn b { color: #e2620b; }
+
+.erp__section { margin: 2.2em .4em 1em; font-size: 1.8em; font-weight: 700; letter-spacing: -.03em; }
+.erp__list {
+  margin: 0;
+  padding: 0 1.6em;
+  border-radius: 2.2em;
+  background: #fff;
+  list-style: none;
+}
+.erp__list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: .3em 1em;
+  padding: 1.3em 0;
+  border-bottom: .1em solid #ecedf2;
+}
+.erp__list li:last-child { border-bottom: 0; }
+.erp__who { grid-row: span 2; font-size: 1.45em; font-weight: 600; letter-spacing: -.015em; }
+.erp__who small { display: block; color: var(--muted); font-size: .85em; font-weight: 400; }
+.erp__amount { justify-self: end; font-size: 1.4em; font-weight: 600; font-variant-numeric: tabular-nums; }
+.chip {
+  justify-self: end;
+  padding: .2em .65em;
+  border-radius: 999px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.chip--paid { background: #ddf7e8; color: #11804a; }
+.chip--prep { background: #fff0d9; color: #b4560a; }
+.chip--sent { background: #e3e8ff; color: var(--blue); }
+
+/* Revelação depois do desbloqueio: os blocos do app chegam em sequência. */
+.app.is-revealing :is(.shop, .flow, .erp) > * {
+  animation: app-in .8s cubic-bezier(.2, .8, .2, 1) backwards;
+  animation-delay: calc(.25s + var(--n, 0) * 55ms);
+}
+.app.is-revealing :is(.shop, .flow, .erp) > :nth-child(2) { --n: 1; }
+.app.is-revealing :is(.shop, .flow, .erp) > :nth-child(3) { --n: 2; }
+.app.is-revealing :is(.shop, .flow, .erp) > :nth-child(4) { --n: 3; }
+.app.is-revealing :is(.shop, .flow, .erp) > :nth-child(5) { --n: 4; }
+.app.is-revealing :is(.shop, .flow, .erp) > :nth-child(n + 6) { --n: 5; }
+.app.is-revealing .erp__bars i { animation: bar-grow .9s cubic-bezier(.2, .8, .2, 1) backwards; }
+.app.is-revealing .erp__bars i:nth-child(n) { animation-delay: calc(.45s + var(--h) * .35s); }
+
+@keyframes app-in { from { opacity: 0; transform: translateY(2.4em); } }
+@keyframes bar-grow { from { transform: scaleY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes ping { from { opacity: .7; transform: scale(1); } to { opacity: 0; transform: scale(1.6); } }
+
 /* Responsive */
 
 @media (max-width: 960px) {
@@ -419,9 +1100,12 @@ a { color: inherit; text-decoration: none; }
     max-height: none;
     gap: 0;
   }
-  .hero-copy { padding: clamp(2.5rem, 8vh, 4rem) 0 3rem; }
+  .hero-copy,
+  .hero-sales { padding: clamp(2.5rem, 8vh, 4rem) 0 3rem; }
+  .hero-sales { max-width: none; padding-top: clamp(2rem, 5vh, 3rem); padding-bottom: 2rem; }
   .headline { font-size: clamp(2.5rem, 13cqi, 6.5rem); }
   .hero-device {
+    grid-area: 2 / 1;
     justify-self: center;
     height: 60em;
     padding: 2em 1em 0;
@@ -435,7 +1119,16 @@ a { color: inherit; text-decoration: none; }
   .button--outline { height: 34px; padding: 0 .8rem; font-size: .875rem; }
 }
 
+@media (max-width: 480px) {
+  .need { min-height: 3.5rem; padding: .8rem 1rem .8rem 1.125rem; }
+  .sales-cta { width: 100%; justify-content: center; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .notification { transition: none; }
   .caret { animation: none; }
+  .hero.has-switched [data-panel] > *,
+  .hero.has-switched .needs > *,
+  .shop__sticker svg,
+  .shop__chat::after { animation: none; }
 }
